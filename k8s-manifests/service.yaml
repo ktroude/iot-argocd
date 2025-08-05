@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ktroude-playground-service
+  namespace: dev
+  labels:
+    app: ktroude-playground
+spec:
+  selector:
+    app: ktroude-playground
+  ports:
+  - name: http
+    port: 8888
+    targetPort: 8888
+    protocol: TCP
+  type: ClusterIP
