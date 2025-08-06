@@ -7,7 +7,7 @@ This repository contains Kubernetes manifests for IoT project part 3.
 - `argocd/`: ArgoCD application configuration
 
 ## Application
-- **Image**: ktroude42/playground:v1 (will be updated to v2 for GitOps demo)
+- **Image**: wil/playground:v1 (will be updated to v2 for GitOps demo)
 - **Port**: 8888
 - **Namespace**: dev
 
@@ -21,6 +21,6 @@ This repository contains Kubernetes manifests for IoT project part 3.
 ## Usage
 ```bash
 # Test the application
-kubectl port-forward svc/ktroude-playground-service -n dev 8888:8888
+kubectl port-forward svc/wil-playground-service -n dev 8888:8888
 curl http://localhost:8888
 ```
