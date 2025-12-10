@@ -1,26 +1,35 @@
-# IoT Part 3 - ArgoCD GitOps
+# ktroude-iot-argocd
 
-This repository contains Kubernetes manifests for IoT project part 3.
+Application configuration for IOT Part 3 - ArgoCD continuous deployment
 
 ## Structure
-- `k8s-manifests/`: Kubernetes YAML files monitored by ArgoCD
-- `argocd/`: ArgoCD application configuration
+```
+app/
+└── deployment.yaml  # Namespace, Deployment, and Service for wil42/playground
+```
 
 ## Application
-- **Image**: wil/playground:v1 (will be updated to v2 for GitOps demo)
-- **Port**: 8888
-- **Namespace**: dev
 
-## GitOps Workflow
-1. Modify `k8s-manifests/deployment.yaml`
-2. Change image tag from `v1` to `v2`
-3. Commit and push
-4. ArgoCD automatically syncs the changes
-5. Application updates without manual intervention
+- **Image**: `wil42/playground`
+- **Versions**: `v1`, `v2`
+- **Port**: 8888
 
 ## Usage
-```bash
-# Test the application
-kubectl port-forward svc/wil-playground-service -n dev 8888:8888
-curl http://localhost:8888
+
+This repository is monitored by ArgoCD. Any changes pushed to `app/deployment.yaml` will be automatically synchronized to the Kubernetes cluster.
+
+### Switch to v2
+
+Edit `app/deployment.yaml`:
+```yaml
+image: wil42/playground:v2  # Change from v1 to v2
 ```
+
+Commit and push:
+```bash
+git add app/deployment.yaml
+git commit -m "Update to v2"
+git push
+```
+
+ArgoCD will automatically deploy the new version.
